@@ -1,0 +1,4 @@
+-- SQL: DDL - CREATE
+
+
+-- SQL: DDL - ALTER
