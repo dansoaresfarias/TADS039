@@ -1,0 +1,20 @@
+body {
+    background: #ECE9E6;
+    background: -webkit-linear-gradient(to right, #FFFFFF, #ECE9E6);
+    background: linear-gradient(to right, #FFFFFF, #ECE9E6);
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+h1 {
+    color: #333333;
+    font-size: 2.5em;
+}
+
+h2.perfil {
+    color: #313366;
+    font-size: 1.5em;
+}
+
+.centralizar {
+    text-align: center;
+}
