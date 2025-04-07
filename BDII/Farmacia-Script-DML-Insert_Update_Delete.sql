@@ -49,7 +49,6 @@ VALUES
     ("808.808.808-08", 'PE', 'Recife', 'Espinheiro', 'Rua do Espinheiro', 500, NULL, '52020-020'),
     ("777.777.777-77", 'PE', 'Recife', 'Graças', 'Rua das Graças', 200, 'Bloco C', '52011-000'),
     ("754.457.555-44", 'PE', 'Recife', 'Boa Vista', 'Rua da Aurora', 1000, NULL, '50050-090'),
-    ("715.571.511-77", 'PE', 'Recife', 'Santo Amaro', 'Rua do Futuro', 500, 'Fundos', '50070-055'),
     ("707.777.000-70", 'PE', 'Recife', 'Ilha do Leite', 'Rua do Sol', 200, 'Sala 301', '50070-070'),
     ("707.707.707-07", 'PE', 'Recife', 'Madalena', 'Rua Real da Torre', 400, NULL, '50710-000'),
     ("666.666.666-66", 'PE', 'Recife', 'Torre', 'Rua do Apolo', 300, 'Apto 101', '50030-220'),
@@ -76,7 +75,6 @@ VALUES
     ('808.808.808-08', 'SULH65498712', 'SulAmérica Saúde'),
     ('777.777.777-77', 'HAPV32165498', 'Hapvida'),
     ('754.457.555-44', 'NOTR14725836', 'NotreDame Intermédica'),
-    ('715.571.511-77', 'GOLD96385274', 'Golden Cross'),
     ('707.777.000-70', 'PREV74185296', 'Prevent Senior'),
     ('707.707.707-07', 'PORTS25836914', 'Porto Seguro Saúde'),
     ('706.760.607-00', 'AMIL36925814', 'Amil Saúde'),
@@ -120,3 +118,15 @@ delete from cliente
 			where bairro like "V%rzea");
 
 delete from cliente;
+
+-- SQL: DTL
+start transaction;
+delete from cliente
+	where cpf in (select cliente_cpf from enderecocli 
+			where cidade like "Recife");
+commit;
+rollback;
+            
+            
+            
+            
