@@ -1,20 +1,52 @@
 body {
     background: #ECE9E6;
-    background: -webkit-linear-gradient(to right, #FFFFFF, #ECE9E6);
-    background: linear-gradient(to right, #FFFFFF, #ECE9E6);
+    background: -webkit-linear-gradient(to right, #FFFFFF, #ca9d73);
+    background: linear-gradient(to right, #FFFFFF, #ca9d73);
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: #333333;
 }
 
 h1 {
-    color: #333333;
-    font-size: 2.5em;
+    color: brown;
+    font-size: 2.5em;	
 }
 
 h2.perfil {
-    color: #313366;
+    color: pink;
     font-size: 1.5em;
 }
 
 .centralizar {
     text-align: center;
+}
+
+.subtitulos {
+    color: #f10606;
+    font-size: 1.0em;
+}
+
+#sublinhado {
+    text-decoration: underline;
+    font-size: 1.3em;
+}
+
+a:link {
+    color: #51ff00;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #ff00f2;
+    text-decoration: none;
+    font-size: 2.5em;
+}
+
+a:visited {
+    color: #d60202;
+    text-decoration: none;
+}
+
+a:active {
+    color: #1a4fffd7;
+    text-decoration: none;
 }
