@@ -1,14 +1,17 @@
+
+
 body {
     background: #ECE9E6;
     background: -webkit-linear-gradient(to right, #FFFFFF, #ca9d73);
     background: linear-gradient(to right, #FFFFFF, #ca9d73);
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     color: #333333;
+    margin: 10px 100px;
 }
 
 h1 {
     color: brown;
-    font-size: 2.5em;	
+    font-size: 2.5em;
 }
 
 h2.perfil {
@@ -49,4 +52,49 @@ a:visited {
 a:active {
     color: #1a4fffd7;
     text-decoration: none;
+}
+
+div {
+    background-image: url(https://t3.ftcdn.net/jpg/04/07/94/80/240_F_407948043_jQmE5tGWLjXKdsewjvfLttgPAjKeqSmP.jpg);
+    background-repeat: no-repeat;
+    background-position: right top;
+    background-attachment: scroll;
+}
+
+h2 {
+    background-color: green;
+    background: -webkit-linear-gradient(to left, #ca9d73, green);
+    background: linear-gradient(to left, #ca9d73, green);
+}
+
+p {
+    background-color: yellow;
+    opacity: 0.5;
+    margin: 10px;
+}
+
+ul {
+    list-style: url(https://img.freepik.com/vetores-gratis/carinha-sorridente-estilo-desenho-animado-estrela_78370-1112.jpg?semt=ais_hybrid&w=15);
+}
+
+ol {
+    list-style-type: upper-roman;
+}
+
+th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: center;
+    border: 1px dotted #333333;
+  }
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 18px;
+    text-align: justify;
+}
+
+tr:nth-child(even) {
+    background-color: #fa0303;
 }
