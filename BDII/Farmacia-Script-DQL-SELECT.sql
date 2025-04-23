@@ -281,7 +281,63 @@ select d.cpf "CPF do Dependente",
     f.nome "Responsável"
 	from dependente d
 		inner join funcionario f on f.cpf = d.funcionario_cpf;
+
+create view vRelFuncionarios as
+	select cpf "CPF", upper(nome) as "Funcionário", 
+		replace(replace(sexo, 'F', "Feminino"),'M', "Masculino") "Gênero", 
+		estadoCivil "Estado Civil", 
+		date_format(dataNasc, '%d/%m/%Y') "Data de Nascimento", 
+		email "E-mail", 
+		concat(ch, ' horas') "Carga-horária", 
+		concat("R$ ", format(salario, 2, 'de_DE')) "Salário", 
+		concat("R$ ", format(comissao, 2, 'de_DE')) "Comissão", 
+		date_format(dataAdm, '%d/%m/%Y - %H:%i') "Data Admissão",
+		cidade "Cidade",
+		bairro "Bairro"
+			from funcionario
+				inner join enderecofunc on Funcionario_cpf = cpf
+					order by nome;               
+            
+select * from vrelfuncionarios;
+
+select * from vrelfuncionarios
+	where Cidade like "Olinda";
     
-            
-            
-            
+select cli.cpf "CPF", upper(cli.nome) "Cliente", 
+	replace(replace(cli.sexo, 'F', "Feminino"),'M', "Masculino") "Gênero",
+	cli.email "Email", cli.telefone "Telefone",
+    date_format(cli.dataNasc, '%d/%m/%Y') "Data de Nascimento",
+    cli.pontuacao "Pontuação", 
+    ps.numero "Número do Plano de Saúde", 
+    ps.nome "Plano de Saúde",
+    endcli.cidade "Cidade", endcli.bairro "Bairro"
+	from cliente cli
+		left join planosaude ps 
+					on ps.Cliente_cpf = cli.cpf
+        left join enderecocli endcli 
+					on endcli.Cliente_cpf = cli.cpf
+			order by cli.nome;
+
+create view vRelClientes as
+	select cli.cpf "CPF", upper(cli.nome) "Cliente", 
+		replace(replace(cli.sexo, 'F', "Feminino"),'M', "Masculino") "Gênero",
+		cli.email "Email", cli.telefone "Telefone",
+		date_format(cli.dataNasc, '%d/%m/%Y') "Data de Nascimento",
+		cli.pontuacao "Pontuação", 
+		ps.numero "Número do Plano de Saúde", 
+		ps.nome "Plano de Saúde",
+		endcli.cidade "Cidade", endcli.bairro "Bairro"
+		from cliente cli
+			left join planosaude ps 
+						on ps.Cliente_cpf = cli.cpf
+			left join enderecocli endcli 
+						on endcli.Cliente_cpf = cli.cpf
+				order by cli.nome;
+
+select * from vrelclientes
+	where Cidade like "Olinda";
+
+
+
+
+
