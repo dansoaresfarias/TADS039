@@ -57,6 +57,11 @@ dd {
     width: 11em;
 }
 
+.topBcgContato{
+    background-color: var(--cor2);
+    width: 7.5em;
+}
+
 .topBcgEndereco{
     background-color: var(--cor2);
     width: 9em;
@@ -122,6 +127,10 @@ th.largo10{
 }
 
 #habilidades{
+    scroll-margin-top: 80px;
+}
+
+#contato{
     scroll-margin-top: 80px;
 }
 

@@ -20,7 +20,8 @@
             </a>
             <a class="menuDanilo mx-2" href="#experiencia">Experiência Profissional</a>
             <a class="menuDanilo mx-2" href="#habilidades">Habilidades</a>
-            <a class="menuDanilo mx-2" href="#endereco">Endereço/Contato</a>
+            <a class="menuDanilo mx-2" href="#contato">Contato</a>
+            <a class="menuDanilo mx-2" href="#endereco">Endereço</a>
         </div>
     </nav>
     <main class="container">
@@ -185,6 +186,69 @@
                     <li>Desenvolvimento Ágil (Scrum, Kanban)</li>
                     <li>Metodologias de Desenvolvimento de Software</li>
                 </ul>
+            </div>
+        </div>
+        <div class="card my-2 hrCurriculo"></div>
+        <div id="contato">
+            <h2>Contato</h2>
+            <div class="card topBcgContato my-2"></div>
+            <div class="container">
+                <p>Entre em contato para uma cotação ou uma conversa com um café e trocarmos uma ideia para solucionar
+                    seu problema com TI.</p>
+                <div class="container">
+                    <form action="">
+                        <fieldset>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="nome" class="form-label"> <strong>Nome</strong></label>
+                                    <input type="text" class="form-control" id="nome" placeholder="Informe seu nome">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="sobrenome" class="form-label"><strong>Sobrenome</strong></label>
+                                    <input type="text" class="form-control" id="sobrenome" placeholder="Informe seu sobrenome">
+                                </div>
+                            </div>
+                            <div class="row my-2">
+                                <div class="col-md-6">
+                                    <label for="telefone" class="form-label"><strong>Telefone</strong></label>
+                                    <input type="tel" class="form-control" id="telefone" placeholder="Informe seu telefone - (99)99999-9999" pattern="([0-9]{2})[0-9]{5}-[0-9]{4}">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="email" class="form-label"><strong>Email</strong></label>
+                                    <input type="email" class="form-control" id="email" placeholder="Informe seu email">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <label for="momentoReuniao" class="form-label"><strong>Data/Hora da nossa Conversa</strong></label>
+                                    <input type="datetime-local" class="form-control" id="momentoReuniao">
+                                </div>
+                                <div class="col-6">
+                                    <label for="presencialRemoto" class="form-label"><strong>Preferência</strong></label>
+                                    <select class="form-select" name="presencialRemoto" id="presencialRemoto">
+                                        <option selected="" disabled >Escolha uma opção</option>
+                                        <option value="presencial">Presencial</option>
+                                        <option value="remoto">Remoto</option>
+                                    </select>
+                                </div>
+                            </div>                             
+                            <div class="row my-2">
+                                <div class="col-12">
+                                    <label for="mensagem" class="form-label"><strong>Mensagem</strong></label>
+                                    <textarea style="height: 200px;" class="form-control" id="mensagem" placeholder="Conta tua história"></textarea>
+                                </div>
+                            </div>
+                            <div class="row m-3">
+                                <div class="col-1">
+                                    <input type="reset" value="Limpar">
+                                </div>
+                                <div class="col-1">
+                                    <input type="submit" value="Enviar">
+                                </div>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
             </div>
         </div>
         <div class="card my-2 hrCurriculo"></div>
