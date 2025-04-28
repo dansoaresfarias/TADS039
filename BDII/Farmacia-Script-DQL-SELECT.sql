@@ -338,6 +338,98 @@ select * from vrelclientes
 	where Cidade like "Olinda";
 
 
+select f.cpf "CPF", upper(f.nome) as "Funcionário", 
+		concat(f.ch, ' horas') "Carga-horária", 
+		concat("R$ ", format(f.salario, 2, 'de_DE')) "Salário", 
+		concat("R$ ", format(f.comissao, 2, 'de_DE')) "Comissão",
+        count(d.cpf) "Quantidade de Filhos"
+			from funcionario f
+				left join dependente d on d.Funcionario_cpf = f.cpf
+					group by f.cpf
+						order by f.nome;
+
+select f.cpf "CPF", upper(f.nome) as "Funcionário", 
+		concat(f.ch, ' horas') "Carga-horária", 
+		concat("R$ ", format(f.salario, 2, 'de_DE')) "Salário", 
+		concat("R$ ", format(f.comissao, 2, 'de_DE')) "Comissão",
+        concat("R$ ", format(count(d.cpf) * 280, 2, 'de_DE')) "Auxílio Creche"
+			from funcionario f
+				left join dependente d on d.Funcionario_cpf = f.cpf
+					group by f.cpf
+						order by f.nome;
+
+select f.cpf "CPF", upper(f.nome) as "Funcionário", 
+		concat(f.ch, ' horas') "Carga-horária", 
+		concat("R$ ", format(f.salario, 2, 'de_DE')) "Salário", 
+		concat("R$ ", format(f.comissao, 2, 'de_DE')) "Comissão",
+        count(d.cpf) "Quantidade de Filhos",
+        concat("R$ ", format(count(d.cpf) * 280, 2, 'de_DE')) "Auxílio Creche"
+			from funcionario f
+				left join dependente d on d.Funcionario_cpf = f.cpf
+					where timestampdiff(year, d.dataNasc, now()) <= 5
+						group by f.cpf
+							order by f.nome;
+                        
+SELECT cpf, nome, 
+	timestampdiff(year, dataNasc, now()) "idade",
+	Funcionario_cpf
+	FROM farmarciatads039m.dependente
+		where timestampdiff(year, dataNasc, now()) <= 5;
+        
+create view depAuxCreche as
+	 SELECT cpf, nome, 
+		timestampdiff(year, dataNasc, now()) "idade",
+		Funcionario_cpf
+		FROM farmarciatads039m.dependente
+			where timestampdiff(year, dataNasc, now()) <= 5;
+        
+select f.cpf "CPF", upper(f.nome) as "Funcionário", 
+		concat(f.ch, ' horas') "Carga-horária", 
+		concat("R$ ", format(f.salario, 2, 'de_DE')) "Salário", 
+		concat("R$ ", format(f.comissao, 2, 'de_DE')) "Comissão",
+        concat("R$ ", format(count(d.cpf) * 280, 2, 'de_DE')) "Auxílio Creche"
+			from funcionario f
+				left join depauxcreche d on d.Funcionario_cpf = f.cpf
+					group by f.cpf
+						order by f.nome;   
+                        
+select f.cpf "CPF Funcionário",
+	f.nome "Funcionário",
+	count(v.idVenda) "Quantidade de Venda",
+    concat("R$ ", format(sum(v.valorTotal), 2, 'de_DE')) "Faturamento"
+    from funcionario f
+		left join venda v on v.Funcionario_cpf = f.cpf
+			group by f.cpf
+				order by count(v.idVenda) desc;
+
+select f.cpf "CPF Funcionário",
+	f.nome "Funcionário",
+	count(v.idVenda) "Quantidade de Venda",
+    concat("R$ ", format(sum(v.valorTotal), 2, 'de_DE')) "Faturamento"
+    from funcionario f
+		left join venda v on v.Funcionario_cpf = f.cpf
+			group by f.cpf
+				order by sum(v.valorTotal) desc;
+
+
+select substr(dataVenda, 5) 
+	from venda;
+
+select date_format(dataVenda, '%m/%Y')
+	from venda;
+
+select date_format(dataVenda, '%m/%Y') "Mês/Ano", 
+	count(idVenda) "Quantidade de Vendas",
+    sum(valorTotal) "Faturamento"
+		from venda
+			group by date_format(dataVenda, '%m/%Y')
+				order by dataVenda;
+            
+            
+            
+            
+            
+
 
 
 
