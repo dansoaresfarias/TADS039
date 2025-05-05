@@ -417,18 +417,42 @@ select substr(dataVenda, 5)
 
 select date_format(dataVenda, '%m/%Y')
 	from venda;
-
+    
+-- Resolver próxima aula
 select date_format(dataVenda, '%m/%Y') "Mês/Ano", 
 	count(idVenda) "Quantidade de Vendas",
     sum(valorTotal) "Faturamento"
 		from venda
-			group by date_format(dataVenda, '%m/%Y')
-				order by dataVenda;
+			group by date_format(dataVenda, '%m/%Y'); 
             
+-- CPF, Funcionario, Ch, Salario, Comissao, Cargo, Departamento
+select func.cpf "CPF", func.nome "Funcionario",
+	concat(func.ch, " horas") "Carga-Horária",
+    concat("R$ ", format(func.salario, 2, 'pt_BR')) "Salário",
+    concat("R$ ", format(func.comissao, 2, 'pt_BR')) "Comissão",
+    crg.nome "Cargo",
+    dep.nome "Departamento"
+	from trabalhar trb
+		inner join funcionario func on func.cpf =  trb.Funcionario_cpf
+        inner join departamento dep on dep.idDepartamento = trb.Departamento_idDepartamento
+        inner join cargo crg on crg.cbo = trb.Cargo_cbo
+			order by func.nome;
             
-            
-            
-            
+select func.cpf "CPF", func.nome "Funcionario",
+	concat(func.ch, " horas") "Carga-Horária",
+    ifnull(group_concat(tel.numero separator " | "), func.email) "Contato",
+    concat("R$ ", format(func.salario, 2, 'pt_BR')) "Salário",
+    concat("R$ ", format(func.comissao, 2, 'pt_BR')) "Comissão",
+	upper(crg.nome) "Cargo",
+    group_concat(distinct dep.nome separator " | ") "Departamento"
+	from trabalhar trb
+		inner join funcionario func on func.cpf =  trb.Funcionario_cpf
+        inner join departamento dep on dep.idDepartamento = trb.Departamento_idDepartamento
+        inner join cargo crg on crg.cbo = trb.Cargo_cbo
+        left join telefone tel on tel.Funcionario_cpf = func.cpf
+			group by func.cpf, crg.cbo
+				order by func.nome;
+
 
 
 
