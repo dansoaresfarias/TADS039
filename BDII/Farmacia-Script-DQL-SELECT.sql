@@ -453,7 +453,13 @@ select func.cpf "CPF", func.nome "Funcionario",
 			group by func.cpf, crg.cbo
 				order by func.nome;
 
-
+select upper(crg.nome) "Cargo",
+	group_concat(distinct func.nome separator " | ") "Funcionarios"
+    from trabalhar trb
+		inner join funcionario func on func.cpf = trb.Funcionario_cpf
+        inner join cargo crg on crg.cbo = trb.Cargo_cbo
+			group by crg.cbo
+				order by crg.nome;
 
 
 
