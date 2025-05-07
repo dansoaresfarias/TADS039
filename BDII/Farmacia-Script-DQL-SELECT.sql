@@ -461,5 +461,143 @@ select upper(crg.nome) "Cargo",
 			group by crg.cbo
 				order by crg.nome;
 
+SELECT 
+    nome 'Cliente',
+    cpf 'CPF',
+    CASE sexo
+        WHEN 'F' THEN 'Feminino'
+        WHEN 'M' THEN 'Masculino'
+        ELSE 'Outro'
+    END 'Gênero',
+    IFNULL(telefone, email) 'Contato',
+    TIMESTAMPDIFF(YEAR, dataNasc, NOW()) 'Idade',
+    CASE
+        WHEN TIMESTAMPDIFF(YEAR, dataNasc, NOW()) BETWEEN 25 AND 35 THEN 'Cliente Alvo'
+        WHEN sexo LIKE 'F' THEN 'Cliente Alvo'
+        ELSE 'Cliente Não Alvo'
+    END 'Campanha de Vendas para COVID'
+FROM
+    cliente
+ORDER BY nome;
+
+SELECT 
+    nome 'Cliente',
+    cpf 'CPF',
+    CASE sexo
+        WHEN 'F' THEN 'Feminino'
+        WHEN 'M' THEN 'Masculino'
+        ELSE 'Outro'
+    END 'Gênero',
+    IFNULL(telefone, email) 'Contato',
+    TIMESTAMPDIFF(YEAR, dataNasc, NOW()) 'Idade',
+    CASE
+        WHEN (sexo LIKE 'F') AND 
+			(TIMESTAMPDIFF(YEAR, dataNasc, NOW()) BETWEEN 25 AND 35)
+				THEN 'Cliente Alvo'
+        ELSE 'Cliente Não Alvo'
+    END 'Campanha de Vendas para COVID'
+FROM
+    cliente
+ORDER BY nome;
+
+SELECT 
+    srv.nome 'Serviço',
+    CONCAT('R$ ', FORMAT(srv.valor, 2, 'pt_BR')) 'Valor',
+    CASE
+        WHEN COUNT(ivs.Servico_idServico) > 0 THEN 'SIM'
+        ELSE 'NÃO'
+    END 'Já vendeu?'
+FROM
+    servico srv
+        LEFT JOIN
+    itensvendaservico ivs ON srv.idServico = ivs.Servico_idServico
+GROUP BY srv.idServico
+ORDER BY srv.nome;
+
+SELECT 
+    srv.nome 'Serviço',
+    CONCAT('R$ ', FORMAT(srv.valor, 2, 'pt_BR')) 'Valor',
+    CASE
+        WHEN COUNT(ivs.Servico_idServico) > 0 THEN 'SIM'
+        ELSE 'NÃO'
+    END 'Já vendeu?'
+FROM
+    servico srv
+        LEFT JOIN
+    itensvendaservico ivs ON srv.idServico = ivs.Servico_idServico
+GROUP BY srv.idServico
+ORDER BY srv.nome;
+
+SELECT 
+    prd.nome 'Serviço',
+    CONCAT('R$ ', FORMAT(prd.valor, 2, 'pt_BR')) 'Valor',
+    CASE
+        WHEN COUNT(ivp.Produto_idProduto) > 0 THEN 'SIM'
+        ELSE 'NÃO'
+    END 'Já vendeu?',
+    COUNT(ivp.Produto_idProduto) 'Quantidade de Praticipação em Vendas'
+FROM
+    produto prd
+        LEFT JOIN
+    itensvendaprod ivp ON ivp.Produto_idProduto = prd.idProduto
+GROUP BY prd.idProduto
+ORDER BY prd.nome;
+
+SELECT 
+    upper(prd.nome) 'Serviço',
+    CONCAT('R$ ', FORMAT(prd.valor, 2, 'pt_BR')) 'Valor',
+    CASE
+        WHEN COUNT(ivp.Produto_idProduto) > 0 THEN 'SIM'
+        ELSE 'NÃO'
+    END 'Já vendeu?',
+    COUNT(ivp.Produto_idProduto) 'Quantidade de Praticipação em Vendas'
+FROM
+    produto prd
+        LEFT JOIN
+    itensvendaprod ivp ON ivp.Produto_idProduto = prd.idProduto    
+GROUP BY prd.idProduto
+HAVING COUNT(ivp.Produto_idProduto) > 3
+ORDER BY prd.nome;
+
+select substr(dataVenda, 1,4) "Ano",
+	count(idVenda) "Quantidade de Vendas",
+    sum(valorTotal) "Faturamento"
+	from venda
+		group by substr(dataVenda, 1,4);
+
+select date_format(dataVenda, '%Y') "Ano", 
+	count(idVenda) "Quantidade de Vendas",
+    sum(valorTotal) "Faturamento"
+		from venda
+			group by date_format(dataVenda, '%Y')
+				order by 3 desc; 
+
+SET SQL_SAFE_UPDATES = 0;
+
+update itensvendaprod 
+	set quantidade = 2
+		where descontoProd > 0;
+
+update itensvendaprod 
+	set quantidade = 3
+		where valorDeVenda < 6;
+
+-- Produto, Frequencia de Venda, Qunatidade Vendida, Faturamento(tirar o desc)
+select prd.nome "Produto",
+	count(ivp.Venda_idVenda) "Frequencia de Venda",
+    sum(ivp.quantidade) "Quantidade Vendida",
+    concat("R$ ", format(sum((ivp.valorDeVenda * ivp.quantidade) - ifnull(ivp.descontoProd, 0)) , 2, 'pt_BR')) "Faturamento"
+	from itensvendaprod ivp
+    inner join produto prd on prd.idProduto = ivp.Produto_idProduto
+		group by ivp.Produto_idProduto
+			order by sum((ivp.valorDeVenda * ivp.quantidade) - ifnull(ivp.descontoProd, 0)) desc; 
+
+
+
+
+
+
+
+
 
 
