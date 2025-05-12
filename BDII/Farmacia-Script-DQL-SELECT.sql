@@ -592,6 +592,37 @@ select prd.nome "Produto",
 		group by ivp.Produto_idProduto
 			order by sum((ivp.valorDeVenda * ivp.quantidade) - ifnull(ivp.descontoProd, 0)) desc; 
 
+delimiter $$
+create function valeTransporte(pCPF varchar(14)) 
+	returns decimal(5,2) deterministic
+    begin
+		declare valeTransp decimal(5,2) default 0.0;
+        declare auxSal decimal(7,2);
+        declare auxCid varchar(60);
+        select salario into auxSal from funcionario where cpf like pCPF;
+        select cidade into auxCid from enderecofunc where Funcionario_cpf like pCPF;
+        if auxCid like "Recife"
+			then set valeTransp = 22 * 2 * 4.3;
+		else set valeTransp = 22 * 2 * 5.1;
+        end if;
+        set valeTransp = valeTransp - 0.06 * auxSal;
+        if valeTransp > 0 
+			then return valeTransp;
+            else return 0.0;
+		end if;
+    end $$
+delimiter ;
+
+select f.cpf "CPF", upper(f.nome) as "Funcionário", 
+	concat(f.ch, ' horas') "Carga-horária", 
+	concat("R$ ", format(f.salario, 2, 'de_DE')) "Salário", 
+	concat("R$ ", format(f.comissao, 2, 'de_DE')) "Comissão",
+    concat("R$ ", format(count(d.cpf) * 280, 2, 'de_DE')) "Auxílio Creche",
+    concat("R$ ", format(valeTransporte(f.cpf), 2, 'de_DE')) "Vale Transporte"
+		from funcionario f
+			left join depauxcreche d on d.Funcionario_cpf = f.cpf
+				group by f.cpf
+					order by f.nome;   
 
 
 
