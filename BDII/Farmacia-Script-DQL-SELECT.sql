@@ -683,11 +683,57 @@ select f.cpf "CPF", upper(f.nome) as "Funcionário",
 				group by f.cpf
 					order by f.nome;   
 
+delimiter $$
+create procedure cadFunc(pcpf varchar(14),
+			pnome varchar(60) ,
+			pnomeSocial varchar(45) ,
+			pemail varchar(45) ,
+			psexo char(1) ,
+			pestadoCivil varchar(15) ,
+			pdataNasc date ,
+			pch int ,
+			psalario decimal(7,2),
+			pcomissao decimal(6,2) ,
+			pdataAdm datetime ,
+			pdataDem datetime ,
+			pfg decimal(6,2),
+            pNumTel1 varchar(15),
+            pNumTel2 varchar(15),
+            pNumTel3 varchar(15),
+            puf char(2) ,
+			pcidade varchar(60) ,
+			pbairro varchar(60) ,
+			prua varchar(70) ,
+			pnumero int ,
+			pcomp varchar(45) ,
+			pcep varchar(9))
+	begin
+		insert into funcionario
+			value (pcpf, pnome, pnomesocial, pemail, psexo, pestadocivil, pdatanasc,
+            pch, psalario, pcomissao, pdataAdm, pdataDem, pfg);
+		insert into telefone (numero, funcionario_cpf)
+			value (pNumTel1, pcpf);
+		if pNumTel2 is not null 
+			then insert into telefone (numero, funcionario_cpf)
+					value (pNumTel2, pcpf);
+		end if;
+		if pNumTel3 is not null 
+			then insert into telefone (numero, funcionario_cpf)
+					value (pNumTel3, pcpf);
+		end if;
+		insert into enderecofunc
+			value (pcpf, puf, pcidade, pbairro, prua, pnumero, pcomp, pcep);
+    end $$ 
+delimiter ;
 
+call cadFunc("707.700.007-77", "Gislany Araújo", "Gi", "gislany.sa@gmail.com",
+	'F', "Casada", '1998-09-30', 40, 3000, 420, '2020-05-26 08:00', null, 0.0,
+    '(81)97447-9974', '(81)98448-9984', null, 'PE', "Recife", "Nova Descoberta",
+    "Rua nova descoberta", 4389, null, '50090-197');
 
+select * from funcionario;
 
+select * from telefone;
 
-
-
-
+select * from enderecofunc;
 
