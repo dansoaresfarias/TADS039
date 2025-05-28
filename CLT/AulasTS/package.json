@@ -1,0 +1,27 @@
+{
+  "name": "AulasTS",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "ts-node-dev src/index.ts",
+    "start": "node build/index.js",
+    "build": "rimraf .build && tsc"
+  },
+  "keywords": [
+    "Aulas",
+    "Ensino",
+    "TypeScript",
+    "Node.js"
+  ],
+  "author": "Danilo Farias",
+  "license": "ISC",
+  "description": "Projeto para ensino de TS. Este projeto é um exemplo de como estruturar um projeto TypeScript com Node.js.",
+  "dependencies": {
+    "typescript": "^5.8.3"
+  },
+  "devDependencies": {
+    "ts-node-dev": "^2.0.0",
+    "tsx": "^4.19.4"
+  }
+}
