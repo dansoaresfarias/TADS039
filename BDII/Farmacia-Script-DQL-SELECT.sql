@@ -737,3 +737,26 @@ select * from telefone;
 
 select * from enderecofunc;
 
+delimiter $$
+create trigger trgAftInsertItensVndProduto after insert
+	on itensvendaprod
+		for each row
+			begin
+				update produto 
+					set quantidade = quantidade - new.quantidade
+						where idProduto = new.Produto_idProduto;
+				update venda
+					set valorTotal = valorTotal + (new.quantidade * new.valorDeVenda - new.descontoProd)
+						where idVenda = new.Venda_idVenda;
+			end $$
+delimiter ;
+
+insert into venda (datavenda, valortotal, desconto, Funcionario_cpf, Cliente_cpf)
+	value('2025-06-02 12:06', 0.0, 0, "707.700.007-77", "319.874.206-58");
+
+insert into itensvendaprod 
+	values (264, 1, 5, 2, 0),
+			(264, 2, 7, 1, 0),
+            (264, 6, 9, 3, 9);
+
+
