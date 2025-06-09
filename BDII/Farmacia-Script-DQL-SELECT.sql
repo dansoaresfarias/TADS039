@@ -759,4 +759,44 @@ insert into itensvendaprod
 			(264, 2, 7, 1, 0),
             (264, 6, 9, 3, 9);
 
+delimiter $$
+create trigger trgAftDeleteItensVndProduto after delete
+	on itensvendaprod
+		for each row
+			begin
+				update produto 
+					set quantidade = quantidade + old.quantidade
+						where idProduto = old.Produto_idProduto;
+				update venda
+					set valorTotal = valorTotal - (old.quantidade * old.valorDeVenda - old.descontoProd)
+						where idVenda = old.Venda_idVenda;
+			end $$
+delimiter ;
 
+delete from itensvendaprod
+	where Venda_idVenda = 264 and
+		Produto_idProduto = 6;
+        
+delimiter $$
+create trigger tgrBfrInsertItensVendaProd before insert
+	on itensvendaprod
+	for each row
+		begin
+			declare estoque int default 0;
+            select quantidade into estoque 
+				from produto 
+					where idProduto = new.Produto_idProduto;
+			if estoque < new.quantidade
+				then SIGNAL SQLSTATE '45000'
+					set message_text = 'Erro (Danilo Farias): Estoque insuficiente para o produto.';
+			end if;
+		end $$
+delimiter ;
+
+insert into venda (datavenda, valortotal, desconto, Funcionario_cpf, Cliente_cpf)
+	value(now(), 0.0, 0, "707.700.007-77", "319.874.206-58");
+
+insert into itensvendaprod 
+	values (265, 1, 5, 2, 0),
+			(265, 2, 7, 50, 0),
+            (265, 6, 9, 3, 9);
