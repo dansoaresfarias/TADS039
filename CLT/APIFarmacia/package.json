@@ -4,8 +4,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "ts-node-dev src/index.ts",
-    "start": "node build/index.js",
+    "dev": "ts-node-dev ./server.ts",
+    "start": "node build/server.js",
     "build": "rimraf .build && tsc"
   },
   "keywords": [

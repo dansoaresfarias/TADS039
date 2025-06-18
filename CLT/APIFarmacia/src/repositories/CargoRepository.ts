@@ -68,7 +68,7 @@ class cargoRepository {
 
     async deleteAll(): Promise<number> {
         try {
-            let num = this.cargoRepository.query("select count(idCargo) from Cargo;");
+            let num = this.cargoRepository.query("select count(cbo) from Cargo;");
             await this.cargoRepository.query("delete from Cargo;");
             return num;
         } catch (error) {
