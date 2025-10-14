@@ -1,6 +1,7 @@
 import { Agencia } from "./Model/Agencia";
 import { Cliente } from "./Model/Cliente";
-import { Conta } from "./Model/Conta";
+import { ContaCorrente } from "./Model/ContaCorrente";
+import { ContaPoupanca } from "./Model/ContaPoupanca";
 import { Endereco } from "./Model/Endereco";
 
 console.log("Banco Financeiro - Projeto de Ensino");
@@ -27,8 +28,8 @@ const josue = new Cliente("Josué Silva", "987.654.321-00",
 
 //console.log(gislany.toString());
 
-const contaGi = new Conta(gislany, 123456, agSuassuna);
-const contaJosue = new Conta(josue, 654321, agSuassuna);
+const contaGi = new ContaCorrente(gislany, 123456, agSuassuna);
+const contaJosue = new ContaPoupanca(josue, 654321, agSuassuna);
 
 contaGi.depositar(4500);
 contaGi.sacar(500);

@@ -5,7 +5,8 @@ import java.util.Date;
 import Model.Agencia;
 import Model.Cliente;
 import Model.Endereco;
-import Model.Conta;
+import Model.ContaCorrente;
+import Model.ContaPoupanca;
 
 public class Principal {
 
@@ -37,8 +38,8 @@ public class Principal {
 		
 		//System.out.println(agSuassuna);
 		
-		Conta contaGi = new Conta(gislany, 123456, agSuassuna);
-		Conta contaJosue = new Conta(josue, 456456, agSuassuna);
+		ContaCorrente contaGi = new ContaCorrente(gislany, 123456, agSuassuna);
+		ContaPoupanca contaJosue = new ContaPoupanca(josue, 456456, agSuassuna);
 		
 		contaGi.depositar(4500);
 		contaGi.sacar(500);
