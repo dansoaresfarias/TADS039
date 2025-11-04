@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema Bancário TADS039 - Cadastro Cliente</title>
+</head>
+<body>
+    <div class="container center">
+		<h2> .:: Sistema Bancário TADS039 ::.  </h2>
+		<a href="/" class="waves-effect waves-light btn"><i class="material-icons left">home</i> Home</a>
+		<a href="/cadastrarCliente" class="waves-effect waves-light btn"><i class="material-icons left">add_circle_outline</i>Cadastrar Clinte</a>
+		<a href="/listarClientes" class="waves-effect waves-light btn"><i class="material-icons left">list</i> Listar Clientes</a>
+	</div>	
+
+    <form method="post" class="container">
+        <div class="row">
+            <div class="input-field col s12">
+                <b>Nome:</b> <input type="text" value="" name="nome" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s6">
+                <b>CPF:</b> <input type="text" value="" name="cpf" />
+            </div>
+            <div class="input-field col s3">
+                <b>Data de Nascimento:</b> <input type="date" value="" name="dataNasc" />
+            </div>
+            <div class="input-field col s3">
+                <b>RG:</b> <input type="text" value="" name="rg" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s6">
+                <b>Email:</b> <input type="email" value="" name="email" />
+            </div>
+            <div class="input-field col s6">
+                <b>Telefone:</b> <input type="tel" value="" name="telefone" />
+            </div>
+        </div>
+        <div class="row center">
+            <button class="waves-effect waves-light btn" type="submit">
+                <i class="material-icons left">save</i>Salvar
+            </button>
+            <button class="waves-effect waves-light btn" type="reset">
+                <i class="material-icons left">cancel</i>Cancelar
+            </button>
+            <a class="waves-effect waves-light btn" href="/">
+                <i class="material-icons left">keyboard_arrow_left</i>Voltar
+            </a>
+        </div>
+    </form>
+</body>
+</html>
