@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema Bancário TADS039 - Cadastro Cliente</title>
+</head>
+<body>
+    <div class="container center">
+		<h2> .:: Sistema Bancário TADS039 ::.  </h2>
+		<a href="/" class="waves-effect waves-light btn"><i class="material-icons left">home</i> Home</a>
+		<a href="/cadastrarCliente" class="waves-effect waves-light btn"><i class="material-icons left">add_circle_outline</i>Cadastrar Clinte</a>
+		<a href="/listarClientes" class="waves-effect waves-light btn"><i class="material-icons left">list</i> Listar Clientes</a>
+	</div>	
+    <br>
+    <div class="container center">
+        <h4> Lista de Clientes </h4>
+        <br>
+        <table class="striped">
+            <thead>
+                <tr>
+                    <th class="center">CPF</th>
+                    <th class="center">Nome</th>
+                    <th class="center">Data de Nascimento</th>
+                    <th class="center">RG</th>
+                    <th class="center">Email</th>
+                    <th class="center">Telefone</th>
+                    <th class="center">Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="cliente : ${clientes}">
+                    <td th:text="${cliente.cpf}">CPF</td>
+                    <td th:text="${cliente.nome}">Nome</td>
+                    <td th:text="${cliente.dataNasc}">Data de Nascimento</td>
+                    <td th:text="${cliente.rg}">RG</td>
+                    <td th:text="${cliente.email}">Email</td>
+                    <td th:text="${cliente.telefone}">Telefone</td>
+                    <td>
+                        <a th:href="@{/detalharCliente/{cpf}(cpf=${cliente.cpf})}" class="btn-flat blue-text" title="Detalhar">
+                            <i class="material-icons">visibility</i>
+                        </a>
+                        <a th:href="@{/excluirCliente/{cpf}(cpf=${cliente.cpf})}"
+                           class="btn-flat red-text"
+                           title="Excluir"
+                           onclick="return confirm('Confirma exclusão deste cliente?');">
+                            <i class="material-icons">delete</i>
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <br>
+        <div class="row center">
+            <a class="waves-effect waves-light btn" href="/">
+                <i class="material-icons left">keyboard_arrow_left</i>Voltar
+            </a>
+        </div>
+    </div>    
+</body>
+</html>
