@@ -1,8 +1,8 @@
 import { Endereco } from "./Endereco";
 
 export class Cliente {
-    private nome: string;
     private cpf: string;
+    private nome: string;
     private dataNascimento: Date;
     private rg: number;
     private email: string;

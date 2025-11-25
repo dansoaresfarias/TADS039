@@ -42,7 +42,7 @@ public class ClienteController {
 	public String deletarCliente(@PathVariable String cpf) {
 		System.out.println(cpf);
 		cr.deleteById(cpf);
-		return "cliente/listarClientes";
+		return "redirect:/listarClientes";
 	}
 	
 }

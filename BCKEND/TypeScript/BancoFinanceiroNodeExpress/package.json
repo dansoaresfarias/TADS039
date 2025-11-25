@@ -1,0 +1,33 @@
+{
+  "name": "bancofinanceironodeexpress",
+  "version": "1.0.0",
+  "description": "Projeto de um banco financeiro utilizando Node.js, Express e TypeScript para fins educacionais.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "ts-node-dev src/index.ts",
+    "start": "node dist/index.js",
+    "build": "rimraf .dist && tsc"
+  },
+  "keywords": [
+    "Ensino",
+    "Banco",
+    "Finanças",
+    "Node",
+    "Express",
+    "TypeScript"
+  ],
+  "author": "Danilo Farias",
+  "license": "ISC",
+  "dependencies": {
+    "mysql2": "^3.15.3",
+    "reflect-metadata": "^0.2.2",
+    "typeorm": "^0.3.27",
+    "typescript": "^5.9.3"
+  },
+  "devDependencies": {
+    "@types/node": "^24.10.1",
+    "ts-node-dev": "^2.0.0",
+    "tsx": "^4.20.6"
+  }
+}
