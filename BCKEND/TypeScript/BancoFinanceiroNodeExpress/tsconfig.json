@@ -25,6 +25,7 @@
     "exactOptionalPropertyTypes": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
+    "esModuleInterop": true,
     // Style Options
     // "noImplicitReturns": true,
     // "noImplicitOverride": true,

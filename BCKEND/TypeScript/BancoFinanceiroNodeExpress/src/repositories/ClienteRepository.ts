@@ -20,8 +20,11 @@ class ClienteRepository {
         }
     }
 
-    async retrieveByCPF(cpf: string): Promise<Cliente | null> {
+    async retrieveByCPF(cpf: string|undefined): Promise<Cliente | null> {
         try {
+            if (!cpf) {
+                throw new Error("CPF inválido!");
+            }
             return this.clienteRepository.findOneBy({
                 cpf: cpf,
             });

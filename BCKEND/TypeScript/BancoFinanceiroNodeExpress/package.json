@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "ts-node-dev src/index.ts",
-    "start": "node dist/index.js",
+    "dev": "ts-node-dev ./server.ts",
+    "start": "node build/server.js",
     "build": "rimraf .dist && tsc"
   },
   "keywords": [
@@ -20,12 +20,16 @@
   "author": "Danilo Farias",
   "license": "ISC",
   "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^5.2.1",
     "mysql2": "^3.15.3",
     "reflect-metadata": "^0.2.2",
     "typeorm": "^0.3.27",
     "typescript": "^5.9.3"
   },
   "devDependencies": {
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.6",
     "@types/node": "^24.10.1",
     "ts-node-dev": "^2.0.0",
     "tsx": "^4.20.6"
